@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Psychology-first pre-commit checks
+echo "🧠 Running psychology-first quality checks..."
+
+# Lint staged files with psychology rules
+npx lint-staged
+
+# Type check
+npm run type-check
+
+echo "✅ Psychology-first quality checks completed!"

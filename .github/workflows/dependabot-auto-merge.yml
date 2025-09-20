@@ -1,0 +1,70 @@
+name: Dependabot Auto-merge
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: Auto-merge Dependabot PRs
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run psychology-check
+        run: npm run psychology-check
+
+      - name: Run tests
+        run: npm run test:unit
+
+      - name: Check if PR is for patch/minor updates
+        id: check-update-type
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ "$PR_TITLE" =~ ^Bump.*from.*to.* ]]; then
+            # Extract version info and determine update type
+            if [[ "$PR_TITLE" =~ (patch|minor) ]] || [[ ! "$PR_TITLE" =~ major ]]; then
+              echo "update_type=safe" >> $GITHUB_OUTPUT
+            else
+              echo "update_type=major" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "update_type=unknown" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Auto-merge safe updates
+        if: steps.check-update-type.outputs.update_type == 'safe'
+        run: |
+          gh pr merge --auto --squash "${{ github.event.pull_request.number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on major updates
+        if: steps.check-update-type.outputs.update_type == 'major'
+        run: |
+          gh pr comment "${{ github.event.pull_request.number }}" --body "🚨 This is a major version update that requires manual review. Please check for breaking changes before merging."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Label security updates
+        if: contains(github.event.pull_request.title, 'security')
+        run: |
+          gh pr edit "${{ github.event.pull_request.number }}" --add-label "security,priority-high"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

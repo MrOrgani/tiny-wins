@@ -1,0 +1,217 @@
+# Dependencies
+# ====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Next.js build output and cache
+# ====================
+.next/
+out/
+build/
+dist/
+
+# Next.js cache and temporary files
+.next/cache/
+.next/standalone/
+.next/static/chunks/
+.next/types/
+
+# Production builds
+*.tsbuildinfo
+next-env.d.ts
+
+# Runtime data
+# ====================
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+# ====================
+coverage/
+*.lcov
+.nyc_output/
+
+# Testing output
+# ====================
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Vitest
+vitest-report/
+coverage/
+
+# Jest (if used)
+jest-coverage/
+
+# Environment variables
+# ====================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# IDE and editor files
+# ====================
+# Keep .vscode for shared settings but ignore user-specific ones
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# Other IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+# ====================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Logs
+# ====================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime and temporary files
+# ====================
+.cache/
+.parcel-cache/
+.npm/
+.eslintcache
+.stylelintcache
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# TypeScript incremental compilation cache
+*.tsbuildinfo
+
+# Tailwind CSS
+# ====================
+# Usually not needed to ignore as Tailwind generates CSS in build process
+# But if using standalone Tailwind CLI:
+# tailwind.css
+
+# shadcn/ui
+# ====================
+# Keep components.json for shadcn/ui configuration
+# Generated components are typically tracked
+
+# Temporary files
+# ====================
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Lock files (uncomment if you want to ignore specific lock files)
+# ====================
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Storybook
+# ====================
+storybook-static/
+
+# Sentry
+# ====================
+.sentryclirc
+
+# Vercel
+# ====================
+.vercel
+
+# Turborepo
+# ====================
+.turbo
+
+# Local development
+# ====================
+.local
+
+# PWA files
+# ====================
+sw.js
+sw.js.map
+workbox-*.js
+workbox-*.js.map
+
+# Other common ignores
+# ====================
+*.orig
+.sass-cache/
+connect.lock
+typings/
+.grunt
+bower_components
+.lock-wscript
+build/Release
+jspm_packages/
+typings/
+.fusebox/
+.dynamodb/
+.tern-port
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*

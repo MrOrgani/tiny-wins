@@ -1,0 +1,349 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors - Natural Growth Palette (WCAG AA Compliant) */
+    --primary: 72 95 72; /* Muted Forest Green #485F48 - Natural, earthy with brown undertones */
+    --primary-light: 96 115 96; /* Soft Sage #607360 - Gentle, sophisticated */
+    --primary-foreground: 255 255 255; /* Pure white for better contrast */
+
+    /* Background Colors - Warm & Welcoming */
+    --background: 254 253 248; /* Warm White #FEFDF8 - Fresh start, clarity */
+    --foreground: 31 41 55; /* Deep Charcoal #1F2937 - Better contrast, still warm */
+
+    /* Supporting Colors - Enhanced Hierarchy (WCAG AA Compliant) */
+    --muted: 243 244 246; /* Light Gray Background #F3F4F6 - Clear definition */
+    --muted-foreground: 55 65 81; /* Dark Slate #374151 - Strong WCAG AA contrast */
+    --card: 255 255 255; /* Pure white cards for subtle elevation */
+    --card-foreground: 31 41 55;
+    --border: 209 213 219; /* Visible border #D1D5DB - Clear definition */
+    --input: 255 255 255; /* Pure white for inputs */
+    --input-foreground: 31 41 55; /* Dark text for inputs - WCAG AA compliant */
+
+    /* Enhanced Psychology Colors - Natural Tones */
+    --amber: 184 134 82; /* Earthy Amber #B88652 - Warm understanding, less electric */
+    --amber-light: 215 184 144; /* Gentle Amber #D7B890 - Soft understanding */
+    --amber-foreground: 31 41 55;
+    --info: 67 94 140; /* Muted Trust Blue #435E8C - Calming, professional */
+    --info-light: 147 166 195; /* Soft Blue #93A6C3 - Gentle guidance */
+    --info-foreground: 255 255 255;
+
+    /* New Positive Psychology Colors - Sophisticated Palette */
+    --celebration: 133 94 161; /* Muted Purple #855EA1 - Refined achievement */
+    --celebration-light: 168 147 186; /* Soft Purple #A893BA - Gentle celebration */
+    --celebration-foreground: 255 255 255;
+    --encouragement: 88 130 88; /* Natural Green #588A58 - Organic hope, forest-like */
+    --encouragement-light: 134 158 134; /* Sage Mint #869E86 - Gentle motivation */
+    --encouragement-foreground: 255 255 255;
+
+    /* Interactive States - Enhanced Engagement */
+    --accent: 96 115 96; /* Muted sage for consistency */
+    --accent-foreground: 255 255 255;
+    --accent-light: 134 158 134; /* Gentle sage for hover states */
+
+    /* Shame-Free Semantic Colors */
+    --destructive: 251 146 60; /* Warm amber - understanding, not punishment */
+    --destructive-light: 254 215 170; /* Gentle amber for subtle warnings */
+    --destructive-foreground: 31 41 55;
+
+    /* Positive Status Colors - Natural Tones */
+    --success: 88 130 88; /* Natural forest green - organic growth, achievement */
+    --success-light: 134 158 134; /* Soft sage for subtle success */
+    --success-foreground: 255 255 255;
+    --warning: 251 146 60; /* Warm amber for gentle guidance */
+    --warning-light: 254 215 170; /* Soft amber for subtle warnings */
+    --warning-foreground: 31 41 55;
+
+    /* Focus & Interaction */
+    --ring: 96 115 96; /* Muted sage for focus ring */
+    --ring-offset: 255 255 255; /* White ring offset for clarity */
+
+    /* Radius for consistent rounded corners */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark mode psychology colors - warm and inviting */
+    --background: 17 24 39; /* Deep Navy #111827 - Calming, restful */
+    --foreground: 249 250 251; /* Off-white #F9FAFB - Easy on eyes */
+    --card: 31 41 55; /* Slate #1F2937 - Elevated, comfortable */
+    --card-foreground: 249 250 251;
+    --muted: 75 85 99; /* Medium Slate #4B5563 - Supportive */
+    --muted-foreground: 209 213 219; /* Light Gray #D1D5DB - Strong contrast for dark mode */
+    --border: 107 114 128; /* Visible border slate #6B7280 - Clear definition */
+    --input: 31 41 55; /* Slate input background */
+    --input-foreground: 249 250 251; /* Light text for dark inputs - WCAG AA compliant */
+
+    /* Enhanced psychology colors for dark mode (WCAG AA Compliant) */
+    --primary: 158 186 158; /* Soft sage #9EBA9E - Natural contrast for dark mode */
+    --primary-light: 178 196 178; /* Gentle sage #B2C4B2 - Subtle highlights */
+    --primary-foreground: 17 24 39; /* Dark background for contrast */
+
+    --amber: 251 191 36; /* Brighter amber #FBBF24 - Warm understanding */
+    --amber-light: 254 215 170; /* Soft amber #FED7AA - Gentle moments */
+    --amber-foreground: 17 24 39;
+
+    --info: 125 182 252; /* Enhanced bright blue #7DB6FC - Better visibility in dark mode */
+    --info-light: 147 197 253; /* Light blue #93C5FD - Gentle guidance */
+    --info-foreground: 17 24 39;
+
+    --celebration: 196 181 253; /* Light purple #C4B5FD - Celebration glow */
+    --celebration-light: 221 214 254; /* Softer purple #DDD6FE - Gentle achievement */
+    --celebration-foreground: 17 24 39;
+
+    --encouragement: 134 158 134; /* Natural sage #869E86 - Gentle hope and renewal */
+    --encouragement-light: 158 178 158; /* Soft sage #9EB29E - Fresh starts */
+    --encouragement-foreground: 17 24 39;
+
+    --success: 134 158 134; /* Natural sage for dark mode success */
+    --success-light: 158 178 158;
+    --success-foreground: 17 24 39;
+
+    --warning: 251 191 36; /* Bright amber for visibility */
+    --warning-light: 254 215 170;
+    --warning-foreground: 17 24 39;
+
+    --destructive: 251 191 36; /* Consistent amber approach */
+    --destructive-light: 254 215 170;
+    --destructive-foreground: 17 24 39;
+
+    --accent: 134 158 134; /* Natural sage accent */
+    --accent-light: 158 178 158;
+    --accent-foreground: 17 24 39;
+
+    --ring: 134 158 134; /* Natural sage focus ring */
+    --ring-offset: 17 24 39; /* Dark ring offset */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Essential keyframes for complex animations that can't be replaced with Tailwind */
+  @keyframes heart-float {
+    0% {
+      transform: translateY(0) scale(0);
+      opacity: 0;
+    }
+    15% {
+      transform: translateY(-10px) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) scale(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* Complex celebration effects that require custom CSS */
+  .celebrate-hearts {
+    position: relative;
+  }
+
+  .celebrate-hearts::before {
+    content: '💖';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: heart-float 2s ease-out;
+    pointer-events: none;
+  }
+
+  .celebrate-confetti {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .celebrate-confetti::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706, #92400e);
+    background-size: 20px 20px;
+    animation: confetti 3s ease-out;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  /* Mobile performance optimization */
+  @media (max-width: 768px) {
+    * {
+      animation-duration: 0.2s !important;
+    }
+
+    .celebrate-hearts::before,
+    .celebrate-confetti::after {
+      animation-duration: 1s !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Force natural colors - override any fluorescent issues */
+  .text-primary {
+    color: #485f48 !important; /* Force muted forest green */
+  }
+
+  .bg-primary {
+    background-color: #485f48 !important; /* Force muted forest green */
+  }
+
+  .hover\:bg-primary\/90:hover {
+    background-color: #3d5240 !important; /* Darker green on hover */
+  }
+
+  /* Force readable text colors throughout the app */
+  .text-foreground {
+    color: rgb(31 41 55) !important; /* Dark gray for light mode */
+  }
+
+  .text-muted-foreground {
+    color: rgb(55 65 81) !important; /* Darker muted text for readability */
+  }
+
+  .placeholder\:text-muted-foreground::placeholder {
+    color: rgb(107 114 128) !important; /* Visible placeholder */
+    opacity: 0.8;
+  }
+
+  /* Dark mode text fixes */
+  .dark .text-foreground {
+    color: rgb(249 250 251) !important; /* Light text for dark mode */
+  }
+
+  .dark .text-muted-foreground {
+    color: rgb(209 213 219) !important; /* Light muted text for dark mode */
+  }
+
+  .dark .placeholder\:text-muted-foreground::placeholder {
+    color: rgb(156 163 175) !important; /* Visible dark mode placeholder */
+    opacity: 0.8;
+  }
+
+  /* Essential input contrast fixes */
+  input,
+  textarea {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+  }
+
+  .dark input,
+  .dark textarea {
+    color: #f9fafb !important;
+    background-color: #1f2937 !important;
+    border: 1px solid #6b7280 !important;
+  }
+
+  /* Placeholder visibility */
+  input::placeholder,
+  textarea::placeholder {
+    color: #6b7280 !important;
+    opacity: 0.8 !important;
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #9ca3af !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Ensure focus states are visible */
+  input:focus,
+  textarea:focus,
+  button:focus {
+    outline: 2px solid #485f48 !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Override fluorescent colors with natural tones */
+  .text-green-400,
+  .text-green-500,
+  .text-lime-400,
+  .text-lime-500 {
+    color: #485f48 !important;
+  }
+
+  .bg-green-400,
+  .bg-green-500,
+  .bg-lime-400,
+  .bg-lime-500 {
+    background-color: #485f48 !important;
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .celebrate {
+      animation: none;
+    }
+
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High contrast mode support - WCAG AAA Accessibility */
+  @media (prefers-contrast: high) {
+    :root {
+      --primary: 45 69 45; /* Higher contrast forest green #2D452D - Natural WCAG AAA */
+      --primary-light: 58 84 58; /* Enhanced forest green #3A543A - WCAG AAA */
+      --foreground: 0 0 0; /* Pure black text - WCAG AAA */
+      --background: 255 255 255; /* Pure white background - WCAG AAA */
+      --muted-foreground: 38 38 38; /* Much darker gray #262626 - Enhanced WCAG AAA */
+      --border: 85 85 85; /* Strong gray border #555555 - WCAG AAA */
+      --input: 255 255 255; /* Pure white inputs */
+      --success: 45 84 45; /* Natural dark green #2D542D - WCAG AAA */
+      --amber: 153 102 51; /* Earthy dark amber #996633 - WCAG AAA */
+      --info: 51 77 115; /* Natural dark blue #334D73 - WCAG AAA */
+      --celebration: 89 51 115; /* Refined dark purple #593373 - WCAG AAA */
+      --encouragement: 45 84 45; /* Natural dark green #2D542D - WCAG AAA */
+    }
+
+    .dark {
+      --primary: 178 196 178; /* Natural bright sage #B2C4B2 - WCAG AAA */
+      --primary-light: 195 208 195; /* Soft sage #C3D0C3 - WCAG AAA */
+      --foreground: 255 255 255; /* Pure white text - WCAG AAA */
+      --background: 0 0 0; /* Pure black background - WCAG AAA */
+      --muted-foreground: 204 204 204; /* Enhanced light gray #CCCCCC - Better WCAG AAA */
+      --border: 136 136 136; /* Medium gray #888888 - WCAG AAA */
+      --success: 158 186 158; /* Natural bright green #9EBA9E - WCAG AAA */
+      --amber: 215 184 144; /* Warm gold #D7B890 - WCAG AAA */
+      --info: 147 166 195; /* Natural light blue #93A6C3 - WCAG AAA */
+      --celebration: 168 147 186; /* Refined light purple #A893BA - WCAG AAA */
+      --encouragement: 158 186 158; /* Natural bright green #9EBA9E - WCAG AAA */
+    }
+  }
+
+  /* Optimize for dark mode preference */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+    }
+  }
+}

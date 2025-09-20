@@ -1,0 +1,64 @@
+{
+  "name": "Tiny Wins - Build Identity Through Showing Up",
+  "short_name": "Tiny Wins",
+  "description": "The micro-habits app that transforms your identity, one small action at a time.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#769E54",
+  "background_color": "#FEFDF8",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["health", "productivity", "lifestyle"],
+  "lang": "en-US",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "display_override": ["window-controls-overlay", "standalone"],
+  "edge_side_panel": {
+    "preferred_width": 320
+  },
+  "shortcuts": [
+    {
+      "name": "Check Today's Habits",
+      "short_name": "Today",
+      "description": "View and complete today's habits",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Create New Habit",
+      "short_name": "New Habit",
+      "description": "Start building a new habit",
+      "url": "/create-habit",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+tinywins",
+      "url": "/?habit=%s"
+    }
+  ]
+}

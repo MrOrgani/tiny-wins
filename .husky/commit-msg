@@ -1,0 +1,12 @@
+#\!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Validate commit message for psychology-first language
+npx --no -- commitlint --edit "$1"
+
+# Check for encouraging language in commit messages
+if echo "$1" | grep -i "fail\|failure\|broken\|fix.*bug"; then
+  echo "💭 Consider using more encouraging language in your commit message."
+  echo "   Instead of \"fix bug\", try \"improve behavior\" or \"enhance functionality\""
+  echo "   Instead of \"failure\", try \"incomplete\" or \"needs attention\""
+fi
