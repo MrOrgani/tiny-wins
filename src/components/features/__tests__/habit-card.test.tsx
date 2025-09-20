@@ -50,8 +50,10 @@ describe('HabitCard', () => {
   });
 
   describe('Psychology-First Principles', () => {
-    it('uses encouraging language throughout', () => {
-      render(<HabitCard habit={mockHabit} />);
+    it('uses encouraging language throughout', async () => {
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       // Check for encouraging button text
       expect(screen.getByText('I Showed Up')).toBeInTheDocument();
@@ -90,15 +92,21 @@ describe('HabitCard', () => {
     it('provides compassionate "life happened" alternative', async () => {
       const user = userEvent.setup();
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       // First click to show the life happened option
       const lifeHappenedTrigger = screen.getByText(/Life happened today\?/);
-      await user.click(lifeHappenedTrigger);
+      await act(async () => {
+        await user.click(lifeHappenedTrigger);
+      });
 
       // Then click the actual button
       const lifeHappenedButton = screen.getByText('Mark: Life Happened');
-      await user.click(lifeHappenedButton);
+      await act(async () => {
+        await user.click(lifeHappenedButton);
+      });
 
       expect(mockHabitStore.markLifeHappened).toHaveBeenCalledWith(
         'test-habit-1'
@@ -107,8 +115,10 @@ describe('HabitCard', () => {
   });
 
   describe('Accessibility Compliance', () => {
-    it('has proper accessibility features for screen readers', () => {
-      render(<HabitCard habit={mockHabit} />);
+    it('has proper accessibility features for screen readers', async () => {
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       // Check for the main button
       const showUpButton = screen.getByRole('button', { name: /I Showed Up/i });
@@ -121,8 +131,10 @@ describe('HabitCard', () => {
       expect(showUpButton).toHaveAttribute('type', 'button');
     });
 
-    it('meets touch target size requirements', () => {
-      render(<HabitCard habit={mockHabit} />);
+    it('meets touch target size requirements', async () => {
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       const showedUpButton = screen.getByRole('button', {
         name: /I Showed Up/i,
@@ -133,17 +145,23 @@ describe('HabitCard', () => {
     it('supports keyboard navigation', async () => {
       const user = userEvent.setup();
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       const showedUpButton = screen.getByRole('button', {
         name: /I Showed Up/i,
       });
 
       // Tab to the button and press Enter
-      await user.tab();
+      await act(async () => {
+        await user.tab();
+      });
       expect(showedUpButton).toHaveFocus();
 
-      await user.keyboard('{Enter}');
+      await act(async () => {
+        await user.keyboard('{Enter}');
+      });
 
       // Wait for the setTimeout in handleShowedUp (300ms)
       await act(async () => {
@@ -157,10 +175,12 @@ describe('HabitCard', () => {
   });
 
   describe('Motion Sensitivity', () => {
-    it('respects reduced motion preferences', () => {
+    it('respects reduced motion preferences', async () => {
       psychologyTestHelpers.mockReducedMotion(true);
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       // Component should render without accessibility warnings
       // and respect motion preferences in its CSS classes
@@ -174,7 +194,9 @@ describe('HabitCard', () => {
     it('responds to interaction within 200ms', async () => {
       const user = userEvent.setup();
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       const showedUpButton = screen.getByRole('button', {
         name: /I Showed Up/i,
@@ -182,7 +204,9 @@ describe('HabitCard', () => {
 
       const interactionTime =
         await psychologyTestHelpers.measureInteractionTime(async () => {
-          await user.click(showedUpButton);
+          await act(async () => {
+            await user.click(showedUpButton);
+          });
         });
 
       // Should respond quickly for psychology-critical interaction
@@ -191,7 +215,7 @@ describe('HabitCard', () => {
   });
 
   describe('Completed State', () => {
-    it('shows encouraging completion message', () => {
+    it('shows encouraging completion message', async () => {
       // Mock the store to return a completed check-in
       const mockCheckIn: HabitCheckIn = {
         id: 'checkin-1',
@@ -204,7 +228,9 @@ describe('HabitCard', () => {
       };
       mockHabitStore.getTodaysCheckIns.mockReturnValue([mockCheckIn]);
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       expect(
         screen.getByText(/You chose to be who you want to become/)
@@ -212,7 +238,7 @@ describe('HabitCard', () => {
       expect(screen.getByText('You Showed Up! ✨')).toBeInTheDocument();
     });
 
-    it('displays completion icon', () => {
+    it('displays completion icon', async () => {
       // Mock the store to return a completed check-in
       const mockCheckIn: HabitCheckIn = {
         id: 'checkin-1',
@@ -225,7 +251,9 @@ describe('HabitCard', () => {
       };
       mockHabitStore.getTodaysCheckIns.mockReturnValue([mockCheckIn]);
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       // Check for completion indicator (CheckCircle icon in button)
       const completionIcon = document.querySelector('svg');
@@ -243,12 +271,16 @@ describe('HabitCard', () => {
 
       const user = userEvent.setup();
 
-      render(<HabitCard habit={mockHabit} />);
+      await act(async () => {
+        render(<HabitCard habit={mockHabit} />);
+      });
 
       const showedUpButton = screen.getByRole('button', {
         name: /I Showed Up/i,
       });
-      await user.click(showedUpButton);
+      await act(async () => {
+        await user.click(showedUpButton);
+      });
 
       expect(mockVibrate).toHaveBeenCalledWith([50, 30, 100]);
     });
