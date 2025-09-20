@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -21,6 +22,7 @@ interface HabitCardProps {
 }
 
 export function HabitCard({ habit, className }: HabitCardProps) {
+  const shouldReduceMotion = useReducedMotion();
   const {
     markHabitComplete,
     markLifeHappened,
@@ -176,10 +178,12 @@ export function HabitCard({ habit, className }: HabitCardProps) {
     <>
       <HoverDelight delightType="glow" className="w-full">
         <Card
+          role="group"
           className={cn(
             'relative overflow-hidden transition-all duration-300 hover:shadow-md',
             getCardStyles(),
             shouldCelebrate && 'animate-celebrate',
+            'motion-safe:transition-all motion-reduce:transition-none',
             className
           )}
         >
@@ -201,6 +205,7 @@ export function HabitCard({ habit, className }: HabitCardProps) {
               <div className="space-y-3">
                 <HoverDelight delightType="bounce">
                   <Button
+                    type="button"
                     onClick={handleShowedUp}
                     disabled={isCheckedIn || isCompleting}
                     className={cn(
@@ -243,6 +248,7 @@ export function HabitCard({ habit, className }: HabitCardProps) {
                         </p>
                         <div className="flex gap-2">
                           <Button
+                            type="button"
                             onClick={handleLifeHappened}
                             className="flex-1 bg-[rgb(184_134_82)] text-[rgb(31_41_55)] hover:bg-[rgb(184_134_82)]/90 transform transition-all duration-200 shadow-sm hover:shadow-md"
                             size="sm"
@@ -251,6 +257,7 @@ export function HabitCard({ habit, className }: HabitCardProps) {
                             Mark: Life Happened
                           </Button>
                           <Button
+                            type="button"
                             onClick={() => setShowLifeHappened(false)}
                             variant="outline"
                             size="sm"
@@ -268,8 +275,12 @@ export function HabitCard({ habit, className }: HabitCardProps) {
               {/* Completion Message */}
               {isCompleted && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={
+                    shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
+                  }
+                  animate={
+                    shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }
+                  }
                   className="text-center p-3 bg-success/10 rounded-lg"
                 >
                   <p className="text-base font-medium text-[rgb(133_94_161)] leading-relaxed text-sm">
@@ -281,8 +292,12 @@ export function HabitCard({ habit, className }: HabitCardProps) {
 
               {isLifeHappened && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={
+                    shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }
+                  }
+                  animate={
+                    shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }
+                  }
                   className="text-center p-3 bg-amber/10 rounded-lg"
                 >
                   <p className="text-sm text-amber-foreground font-medium">
@@ -297,9 +312,21 @@ export function HabitCard({ habit, className }: HabitCardProps) {
             <AnimatePresence>
               {shouldCelebrate && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  initial={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, scale: 0.8 }
+                  }
+                  animate={
+                    shouldReduceMotion
+                      ? { opacity: 1 }
+                      : { opacity: 1, scale: 1 }
+                  }
+                  exit={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, scale: 0.8 }
+                  }
                   className="absolute inset-0 bg-gradient-to-br from-success/95 to-celebration/95 flex items-center justify-center p-4 rounded-lg overflow-hidden"
                 >
                   {/* Confetti particles */}

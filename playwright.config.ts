@@ -18,8 +18,8 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
-    screenshot: 'only-on-incomplete',
-    video: 'retain-on-incomplete',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
     // Psychology-focused testing settings
     actionTimeout: 10000, // Allow time for celebrations and animations
     navigationTimeout: 30000,

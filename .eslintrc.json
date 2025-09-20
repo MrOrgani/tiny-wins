@@ -1,14 +1,11 @@
 {
+  "root": true,
   "extends": ["next/core-web-vitals", "prettier"],
+  "ignorePatterns": ["!src/**/*"],
   "rules": {
-    // Basic code quality
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
-
-    // React and Next.js optimization
     "react/no-unescaped-entities": "off",
-
-    // Psychology-focused custom rules
     "no-restricted-syntax": [
       "error",
       {
@@ -16,8 +13,6 @@
         "message": "Consider using more encouraging language. Instead of 'fail/failure', try 'incomplete', 'in-progress', or 'needs-attention'. Psychology-first development avoids shame-based language."
       }
     ],
-
-    // Enforce consistent code style
     "prefer-const": "error",
     "no-var": "error",
     "object-shorthand": "error",

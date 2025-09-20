@@ -1,0 +1,43 @@
+# Ignore everything by default
+/*
+
+# Only lint the src directory
+!/src
+
+# But still ignore build outputs in src if any
+src/**/*.min.js
+src/**/*.min.css
+
+# Ignore node_modules everywhere
+**/node_modules
+
+# Ignore build directories
+.next
+out
+dist
+build
+
+# Ignore other config files
+*.config.js
+*.config.ts
+!src/**/*.config.js
+!src/**/*.config.ts
+
+# Ignore test coverage
+coverage
+
+# Ignore environment files
+.env*
+
+# Ignore public directory
+public
+
+# Ignore docs
+docs
+
+# Ignore Docker files
+Dockerfile
+docker-compose.yml
+
+# Ignore scripts
+contrast-audit.js

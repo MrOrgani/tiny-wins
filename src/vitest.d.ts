@@ -1,5 +1,6 @@
 /* eslint-disable */
 /// <reference types="vitest" />
+/// <reference types="@testing-library/jest-dom" />
 
 import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers';
 
@@ -22,6 +23,6 @@ declare module 'vitest' {
 
 // Global test helpers
 declare global {
-  function mockReducedMotion(enabled?: boolean): void;
-  function mockHighContrast(enabled?: boolean): void;
+  function mockReducedMotion(_enabled?: boolean): void;
+  function mockHighContrast(_enabled?: boolean): void;
 }

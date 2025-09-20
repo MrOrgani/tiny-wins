@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Psychology-First Compliance', () => {
   test.beforeEach(async ({ page }) => {
@@ -170,8 +170,10 @@ test.describe('Accessibility Compliance', () => {
 
       // Check for proper nesting (basic check)
       const firstHeading = headings[0];
-      const tagName = await firstHeading.evaluate((el) => el.tagName);
-      expect(tagName).toBe('H1');
+      if (firstHeading) {
+        const tagName = await firstHeading.evaluate((el) => el.tagName);
+        expect(tagName).toBe('H1');
+      }
     }
   });
 

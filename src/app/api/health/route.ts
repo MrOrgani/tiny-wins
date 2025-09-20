@@ -11,7 +11,7 @@ export async function GET(_request: NextRequest) {
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
       environment: process.env.NODE_ENV || 'development',
-      version: process.env.NEXT_PUBLIC_APP_VERSION || '0.1.0',
+      version: process.env['NEXT_PUBLIC_APP_VERSION'] || '0.1.0',
       message: 'Tiny wins are building momentum! 🌱',
       checks: {
         memory: await checkMemoryUsage(),
@@ -21,8 +21,8 @@ export async function GET(_request: NextRequest) {
     };
 
     // Optional: Check external dependencies
-    if (process.env.DATABASE_URL) {
-      healthData.checks.database = await checkDatabase();
+    if (process.env['DATABASE_URL']) {
+      (healthData.checks as any).database = await checkDatabase();
     }
 
     // Return healthy status
@@ -104,11 +104,11 @@ function checkEnvironmentVariables() {
  */
 function checkFeatureFlags() {
   const features = {
-    celebrations: process.env.NEXT_PUBLIC_ENABLE_CELEBRATIONS === 'true',
-    sounds: process.env.NEXT_PUBLIC_ENABLE_SOUNDS === 'true',
-    whimsy: process.env.NEXT_PUBLIC_ENABLE_WHIMSY === 'true',
+    celebrations: process.env['NEXT_PUBLIC_ENABLE_CELEBRATIONS'] === 'true',
+    sounds: process.env['NEXT_PUBLIC_ENABLE_SOUNDS'] === 'true',
+    whimsy: process.env['NEXT_PUBLIC_ENABLE_WHIMSY'] === 'true',
     motionSensitivity:
-      process.env.NEXT_PUBLIC_RESPECT_MOTION_PREFERENCES === 'true',
+      process.env['NEXT_PUBLIC_RESPECT_MOTION_PREFERENCES'] === 'true',
   };
 
   const enabledCount = Object.values(features).filter(Boolean).length;
@@ -138,7 +138,7 @@ async function checkDatabase() {
     return {
       status: 'disconnected',
       message: 'Database connection needs attention',
-      error: error.message,
+      error: (error as Error).message,
     };
   }
 }

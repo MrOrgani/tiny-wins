@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # Psychology-first pre-commit checks
 echo "🧠 Running psychology-first quality checks..."
 
