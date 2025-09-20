@@ -4,7 +4,7 @@
 # =============================================================================
 # Build Stage - Dependencies
 # =============================================================================
-FROM node:18-alpine AS deps
+FROM node:24-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -17,7 +17,7 @@ RUN npm ci --only=production && npm cache clean --force
 # =============================================================================
 # Build Stage - Application
 # =============================================================================
-FROM node:18-alpine AS builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 
 # Copy dependencies from deps stage
@@ -39,7 +39,7 @@ RUN npm run build
 # =============================================================================
 # Production Stage - Runtime
 # =============================================================================
-FROM node:18-alpine AS runner
+FROM node:24-alpine AS runner
 
 # Security: Create non-root user
 RUN addgroup --system --gid 1001 nodejs
